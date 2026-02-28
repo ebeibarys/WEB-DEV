@@ -1,0 +1,248 @@
+.product-grid {
+
+  max-width: 1350px;
+
+  margin: auto;
+
+  padding: 30px;
+
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fill, minmax(300px,1fr));
+
+  gap: 28px;
+
+}
+
+
+
+.product-card {
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  border: 1px solid #eee;
+
+  transition: 0.25s;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+
+.product-card:hover {
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+
+  transform: translateY(-6px);
+
+}
+
+
+
+.product-card img {
+
+  width: 100%;
+
+  height: 250px;
+
+  object-fit: contain;
+
+  transition: 0.4s;
+
+}
+
+
+
+.product-card:hover img {
+
+  transform: scale(1.08);
+
+}
+
+
+
+.product-link {
+
+  text-decoration: none;
+
+  color: black;
+
+}
+
+
+
+.product-link h3 {
+
+  font-size: 18px;
+
+  margin-top: 10px;
+
+  line-height: 1.3;
+
+}
+
+
+
+.product-link:hover {
+
+  color: red;
+
+}
+
+
+
+.product-card p {
+
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+}
+
+
+
+.price {
+
+  font-size: 26px;
+
+  font-weight: bold;
+
+  margin-top: 6px;
+
+}
+
+
+
+.rating {
+
+  margin-top: 4px;
+
+  font-size: 15px;
+
+  color: #ffb800;
+
+}
+
+
+
+.share {
+
+  margin-top: 15px;
+
+}
+
+
+
+.share summary {
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+}
+
+
+
+.share-content {
+
+  margin-top: 10px;
+
+  padding: 12px;
+
+  background: #fafafa;
+
+  border-radius: 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+
+
+.share-content a {
+
+  text-decoration: none;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  font-weight: 500;
+
+  border: 1px solid #eee;
+
+}
+
+
+
+.share-content a:hover {
+
+  background: red;
+
+  color: white;
+
+}
+
+
+
+.like {
+
+  position: absolute;
+
+  right: 15px;
+
+  top: 15px;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  color: #ccc;
+
+  transition: 0.2s;
+
+}
+
+
+
+.like:hover {
+
+  color: red;
+
+}
+
+
+
+.badge {
+
+  position: absolute;
+
+  left: 15px;
+
+  top: 15px;
+
+  background: red;
+
+  color: white;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+}

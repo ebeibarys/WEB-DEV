@@ -1,0 +1,72 @@
+<div class="product-card" [class.liked]="product.likes > 0">
+  <div class="product-badges">
+    <span class="badge top" *ngIf="product.rating >= 4.8">🔥 TOP</span>
+    <span class="badge new">NEW</span>
+  </div>
+  
+  <div class="product-actions">
+    <button class="action-btn like-btn" (click)="onLike()" [class.active]="product.likes > 0">
+      <span class="heart">❤</span>
+      <span class="likes-count">{{ product.likes }}</span>
+    </button>
+
+    <button class="action-btn delete-btn" (click)="onDelete()" title="Удалить">
+      <span class="trash">🗑️</span>
+    </button>
+  </div>
+
+  <a [href]="product.link" target="_blank" class="product-link">
+    <div class="image-container">
+      <img [src]="product.images[0]" [alt]="product.name" (error)="onImageError($event)">
+      <div class="image-overlay">
+        <span class="view-details">Посмотреть</span>
+      </div>
+    </div>
+    
+    <h3 class="product-title">{{ product.name }}</h3>
+  </a>
+
+  <div class="product-info">
+    <p class="product-description">{{ product.description | slice:0:80 }}...</p>
+
+    <div class="product-rating">
+      <div class="stars">
+        <span class="star" *ngFor="let star of [1,2,3,4,5]" 
+              [class.filled]="star <= Math.floor(product.rating)">
+          ★
+        </span>
+      </div>
+      <span class="rating-value">{{ product.rating }}</span>
+    </div>
+
+    <div class="product-price">
+      <span class="current-price">{{ product.price | number }} ₸</span>
+      <span class="old-price">{{ (product.price * 1.2) | number }} ₸</span>
+      <span class="discount">-20%</span>
+    </div>
+
+    <!-- Кнопка Wishlist добавлена здесь -->
+    <div class="product-footer">
+      <app-wishlist-button [product]="product"></app-wishlist-button>
+      
+      <details class="share-dropdown">
+        <summary class="share-btn">
+          <span class="share-icon">📤</span>
+          Поделиться
+        </summary>
+        <div class="share-content">
+          <a [href]="'https://wa.me/?text=' + encodeURIComponent(product.link)" 
+             target="_blank" class="share-option whatsapp">
+            <span class="share-icon">📱</span>
+            WhatsApp
+          </a>
+          <a [href]="'https://t.me/share/url?url=' + encodeURIComponent(product.link)" 
+             target="_blank" class="share-option telegram">
+            <span class="share-icon">✈️</span>
+            Telegram
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>

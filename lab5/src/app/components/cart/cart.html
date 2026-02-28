@@ -1,0 +1,69 @@
+<div class="cart-container" [class.open]="isOpen">
+  <div class="cart-header" (click)="toggleCart()">
+    <span class="cart-icon">🛒</span>
+    <span class="cart-count">{{ getTotalItems() }}</span>
+    <span class="cart-title">Корзина</span>
+    <span class="cart-total-preview">{{ getTotalPrice() | number }} ₸</span>
+  </div>
+
+  <div class="cart-content" *ngIf="isOpen">
+    <div class="cart-header-content">
+      <h3>Корзина</h3>
+      <button class="close-btn" (click)="toggleCart()">✕</button>
+    </div>
+
+    <div *ngIf="getCartItems().length === 0" class="empty-cart">
+      <div class="empty-cart-icon">🛒</div>
+      <p>Корзина пуста</p>
+      <p class="empty-cart-sub">Добавьте товары, чтобы оформить заказ</p>
+    </div>
+
+    <div class="cart-items" *ngIf="getCartItems().length > 0">
+      <div *ngFor="let item of getCartItems()" class="cart-item">
+        <img [src]="item.product.images[0]" [alt]="item.product.name" class="cart-item-image">
+        
+        <div class="cart-item-details">
+          <h4 class="cart-item-title">{{ item.product.name }}</h4>
+          <div class="cart-item-price">{{ item.product.price | number }} ₸</div>
+          
+          <div class="cart-item-actions">
+            <div class="quantity-control">
+              <button (click)="decreaseQuantity(item)" class="quantity-btn">−</button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button (click)="increaseQuantity(item)" class="quantity-btn">+</button>
+            </div>
+            
+            <div class="item-total">
+              = {{ item.product.price * item.quantity | number }} ₸
+            </div>
+          </div>
+        </div>
+        
+        <button (click)="removeItem(item.product.id)" class="remove-btn" title="Удалить">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <div class="cart-footer" *ngIf="getCartItems().length > 0">
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Товаров:</span>
+          <span>{{ getTotalItems() }} шт</span>
+        </div>
+        <div class="summary-row total">
+          <span>Итого:</span>
+          <span>{{ getTotalPrice() | number }} ₸</span>
+        </div>
+      </div>
+      
+      <button class="checkout-btn">
+        Оформить заказ
+      </button>
+      
+      <button class="clear-btn" (click)="clearCart()">
+        Очистить корзину
+      </button>
+    </div>
+  </div>
+</div>

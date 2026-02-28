@@ -1,0 +1,11 @@
+<div class="search-container">
+  <input 
+    type="text" 
+    [value]="searchTerm"
+    (input)="onSearchInput($event)"
+    placeholder="Поиск товаров..."
+    class="search-input">
+  <button class="search-btn" (click)="onSearch()">
+    <span class="search-icon">🔍</span>
+  </button>
+</div>

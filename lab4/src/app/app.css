@@ -1,0 +1,24 @@
+.main {
+    padding: 20px 200px;
+}
+.header {
+
+  background: white;
+  border-bottom: 1px solid #eee;
+
+  padding: 15px 30px;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 10;
+}
+
+.logo {
+
+  color: black;
+
+  font-size: 26px;
+  font-weight: bold;
+
+}

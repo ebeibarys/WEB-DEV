@@ -1,0 +1,25 @@
+<div *ngIf="products.length === 0" class="empty-state">
+  <div class="empty-icon">📦</div>
+  <h3>Нет товаров</h3>
+  <p>В этой категории пока нет товаров</p>
+</div>
+
+<div class="products-grid" *ngIf="products.length > 0">
+  <div class="grid-header">
+    <p class="results-count">Найдено {{ products.length }} товаров</p>
+    <select class="sort-select">
+      <option>По популярности</option>
+      <option>Сначала дешевые</option>
+      <option>Сначала дорогие</option>
+      <option>По рейтингу</option>
+    </select>
+  </div>
+
+  <div class="grid-container">
+    <app-product-item 
+      *ngFor="let product of products"
+      [product]="product"
+      (delete)="onDeleteProduct(product.id)">
+    </app-product-item>
+  </div>
+</div>

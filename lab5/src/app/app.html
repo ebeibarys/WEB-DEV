@@ -1,0 +1,101 @@
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <span class="logo-icon">🛍️</span>
+      <span class="logo-text">Kaspi.kz</span>
+    </div>
+    <div class="header-search">
+      <input type="text" placeholder="Поиск товаров..." class="search-input">
+      <button class="search-btn">🔍</button>
+    </div>
+    <div class="header-actions">
+      <button class="cart-btn">🛒 Корзина</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <h1>Добро пожаловать в Kaspi.kz</h1>
+    <p>Лучшие товары по лучшим ценам</p>
+  </div>
+
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <h2 class="section-title">Категории</h2>
+    <div class="category-grid">
+      <button 
+        *ngFor="let category of categories"
+        class="category-card"
+        [class.active]="selectedCategoryId === category.id"
+        (click)="selectCategory(category.id)">
+        <div class="category-icon">{{ category.icon }}</div>
+        <div class="category-name">{{ category.name }}</div>
+        <div class="category-count">{{ getProductCount(category.id) }} товаров</div>
+      </button>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span *ngIf="selectedCategoryId">{{ getCategoryName(selectedCategoryId) }}</span>
+        <span *ngIf="!selectedCategoryId">Все категории</span>
+      </h2>
+      <button *ngIf="selectedCategoryId" class="clear-category" (click)="clearCategory()">
+        ✕ Сбросить
+      </button>
+    </div>
+
+    <div *ngIf="!selectedCategoryId" class="welcome-card">
+      <div class="welcome-content">
+        <h3>Выберите категорию</h3>
+        <p>Нажмите на любую категорию выше, чтобы увидеть товары</p>
+        <div class="welcome-features">
+          <div class="feature">
+            <span class="feature-icon">🚚</span>
+            <span>Бесплатная доставка</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">💳</span>
+            <span>Рассрочка 0-0-12</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">⭐</span>
+            <span>Только оригиналы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-product-list 
+      *ngIf="selectedCategoryId"
+      [products]="getProducts()"
+      (productDeleted)="onProductDeleted($event)">
+    </app-product-list>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4>Kaspi.kz</h4>
+      <p>© 2024 Все права защищены</p>
+    </div>
+    <div class="footer-section">
+      <h4>Контакты</h4>
+      <p>✉️ support@kaspi.kz</p>
+      <p>📞 8-800-080-0800</p>
+    </div>
+    <div class="footer-section">
+      <h4>Мы в соцсетях</h4>
+      <div class="social-links">
+        <a href="#" class="social-link">📱 Instagram</a>
+        <a href="#" class="social-link">📘 Facebook</a>
+        <a href="#" class="social-link">📱 Telegram</a>
+      </div>
+    </div>
+  </div>
+</footer>
